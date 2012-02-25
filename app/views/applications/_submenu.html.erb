@@ -1,0 +1,7 @@
+<% if @menu.sub_categories %>
+	<ul class="submenu">
+	<% @menu.sub_categories.each do |m| %>
+		<a href="<%= category_posts_url(m) %>"><%= m.name %></a>
+	<% end %>
+	</ul>
+<% end %>

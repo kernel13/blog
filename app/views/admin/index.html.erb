@@ -1,0 +1,47 @@
+
+<h1>ADMINISTRATION</h1>
+
+<h2> Categories </h2>
+<table>
+	<th>ID</th>
+	<th>Name</th>
+	<th>parent</th>
+	<th>Delete</th>
+	<th>Edit</th>		
+<% @categories.each do |category| %>
+	<tr>
+	<td width="30px"><%= category.id %></td>
+	<td width="100px"><%= category.name %></td>
+	<td width="100px"><%= category.parent.name if category.parent %></td>
+	<td><%= link_to 'D', category, confirm: 'Are you sure?', method: :delete %></td>
+	<td><%= link_to 'E', edit_category_path(category) %></td>
+	</tr>
+<% end %>
+</table>
+<%= link_to "New Category", new_category_path %>
+<br /><br />
+<h2> Posts </h2>
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Title</th>
+		<th>Category</th>
+		<th>Enabled</th>
+		<th>Delete</th>
+		<th>Edit</th>
+	</tr>
+<% @posts.each do |post| %>
+	<tr>
+		<td width="30px" ><%= post.id %></td>
+		<td width="150px"><%= post.name %></td>
+		<td width="150px"><%= post.title %></td>
+		<td><%= post.category.name %></td>
+		<td><%= post.published %></td>
+		<td><%= link_to 'D', post, confirm: 'Are you sure?', method: :delete %></td>
+		<td><%= link_to 'E', edit_category_post_path(post.category, post) %></td>
+	</tr>
+<% end %>
+</table>
+<%= link_to "New Post", new_category_post_path(Category.first) %>
+<br /><br />

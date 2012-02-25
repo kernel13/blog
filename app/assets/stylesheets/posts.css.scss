@@ -1,0 +1,68 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#posts ul{
+	list-style-type: none;
+}
+
+#posts .title{
+	margin-bottom: 10px;
+}
+
+#posts .content{
+	margin: 5px;
+}
+
+
+
+	/*********************************
+	*	Navigation border and color
+	**********************************/
+/*	ul#menu {border-bottom: 2px solid #9f8c61;box-shadow: 0px 1px #dadada;}*/
+	ul#menu > li a {color:#555;text-shadow: 0px -1px 1px #686868; }
+	ul#menu li.hover > a, ul#menu li:hover > a, 
+	ul#menu a.current, ul#menu a:hover, ul#menu a:focus {background: #689332;color: #fff; text-shadow:none;}
+	ul#menu ul a {background:#fff;color:#000;font-size:70%; text-transform:none}
+	
+	/*********************************
+	*	Navigation style
+	**********************************/
+	ul#menu {padding:2%;width:96%;}
+	ul#menu li {list-style:none;}
+	ul#menu > li { display:inline-block;line-height: 1em; margin-right:0em;position:relative; vertical-align:top;}
+	ul#menu > li span + span {float:right; font-size:80%;padding-left:0.4em;} 
+	ul#menu li a {display:block;font-weight:bold;padding:0.3em 0.7em; position:relative;text-decoration:none;}
+	ul#menu ul a:before { content:'› '; }
+	ul#menu ul a { text-shadow:none;}
+
+	ul#menu > li > a {border-radius: 0.4em;}
+	ul#menu li.sub > a {border-radius: 0.4em 0.4em 0 0;}
+	ul#menu ul, 
+	ul#menu li li:last-child, 
+	ul#menu li li:last-child a, 
+	ul#menu li li:last-child a:hover {border-radius: 0 0 0.4em 0.4em}
+
+	ul#menu.drop {padding:2% 2% 0;}
+	ul#menu.drop > li > a {border-radius: 0.4em 0.4em 0 0;}
+	ul#menu.drop li:hover > ul, ul#menu.drop li.hover > ul, ul#menu.drop li > a:focus + ul { left: 0px;}
+	ul#menu.drop ul { left: -9999px; padding-top:7px;position: absolute;z-index:999;}
+	ul#menu.drop ul a {width:10em;border-bottom:1px solid #dadada;border-left:1px solid #dadada;border-right:1px solid #dadada;}
+	
+				
+	@media screen and (max-width:999px) {
+	#wrapper {width:90%;}
+
+	ul#menu.drop {padding:2%;}
+	ul#menu.drop > li > a {border-radius: 0.4em;}
+	ul#menu.drop li.sub > a {border-radius: 0.4em 0.4em 0 0;}
+	ul#menu.drop ul, ul#menu.drop li:hover > ul, ul#menu.drop li.hover > ul { left: 0px;}
+	ul#menu.drop ul { padding-top:0;position:relative;}
+	ul#menu.drop ul a, ul#menu.drop ul li:last-child a { border-left:0; border-right:0!important;border-top:0!important;}
+	ul#menu.drop ul li:first-child a {border-top:1px solid #dadada;}
+	ul#menu.drop ul a {width:auto;}
+	}
+
+	@media screen and (max-width:540px) {
+	ul#menu > li {display: block;margin-top:0.4em;}
+	}

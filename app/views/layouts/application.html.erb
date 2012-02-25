@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="wrapper">
+    <div id="header"> </div>
+    <div id="left">
+      <div id="logo">
+        <h1>Blog </h1>
+      </div>
+      <div id="nav">
+        	<%= render 'applications/menu' %>
+      </div>
+      <div id="news">
+		<div id="login">
+				<% if session[:user_id] %>
+					<%= form_tag "/logout", :method => 'delete' do %>
+						<label for="name">Logged in as: <%= @user.name %></label>
+						<%= submit_tag "Logout" %>
+					<% end %>
+				<% else %>
+	      			<%= form_tag "/login" do %>
+							<div>
+								<label for="name">Login: </label> <br />
+								<%= text_field_tag :name, params[:name], :size => 20 %>
+							</div>
+							<div>
+								<label for="password">Password: </label> <br />
+								<%= password_field_tag :password, params[:password], :size => 20 %>
+							</div>
+							<div>
+							<%= submit_tag "Login" %>
+							</div>
+					<% end %>
+				<% end %>
+	      </div>  
+      </div> 
+    <div id="MostRecentPost"></div>
+    </div>
+    <div id="right">	
+	
+	
+		<ul id="menu"> 
+		      <li>
+					<a href="menu 1"><span>menu 1</span></a>
+
+					<ul>
+						<li><a href="#"><span>sous menu 1.1</span></a></li>
+						<li><a href="#"><span>sous menu 1.2</span></a></li>
+						<li><a href="#"><span>sous menu 1.3</span></a></li>										
+					</ul>
+			  </li> 
+		      <li><a href="menu 2"><span>menu 2</span></a></li> 
+		      <li>
+					<a href="menu 2"><span>menu 3</span></a>
+
+					<ul>
+						<li><a href="#"><span>sous menu 3.1</span></a></li>
+						<li><a href="#"><span>sous menu 3.2</span></a></li>
+						<li><a href="#"><span>sous menu 3.3</span></a></li>										
+					</ul>
+			  </li> 
+			  <li><a href="menu 2"><span>menu 4</span></a></li>
+		   </ul>
+	
+	
+	
+      <h2><%= yield :head %></h2>
+      <div id="content">	
+            <%= yield %>
+      </div>
+<!--
+      <h3>Company Profile</h3>
+      <div id="profile">
+      
+      </div>
+-->
+    </div>
+
+    <div class="clear" />
+    <div id="spacer" /> 
+    <div id="footer">
+      <div id="copyright">
+        &nbsp;
+      </div>
+	  <div id="footerline"></div>
+    </div>
+	
+
+</body>
+</html>

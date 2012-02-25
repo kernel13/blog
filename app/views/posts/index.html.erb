@@ -1,0 +1,42 @@
+<% content_for :head do %>	
+	<h2> <%= @category.name %> </h2>
+<% end %>
+
+<% content_for :left do %>
+	<% @latest_posts.each do |post| %>
+		<h2><%= post.title  %></h2>
+		<%= post.content %>
+		<br />
+	<% end %>
+<% end %>
+
+<div id="posts">
+ <% @posts.each do |post| %>
+  <ul> 
+    <li class='title'><h3><%= post.title %></h3></li>
+    <li class='content'><%= post.content %></li>
+	
+<!--
+    <li><%= link_to 'Show', post %></li>
+-->
+	<% if @user %>
+    <li>
+		<span>
+		<%= link_to edit_post_path(post) do %>
+			<%= image_tag "edit.jpg", :size => "24x24" %>Delete
+		<% end %>
+		</span>
+		<span>
+		<%= link_to post, confirm: 'Are you sure?', method: :delete do %>
+			<%= image_tag "remove.png", :size => "24x24" %>Edit
+		<% end %>
+		</span>
+	</li>
+	<% end %>
+ </ul>
+<% end %>
+</div>
+
+<br />
+
+<%= link_to 'New Post', new_category_post_path(@category) if @user %>
