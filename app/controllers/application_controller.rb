@@ -2,17 +2,29 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   before_filter do |controller|
-    
-    #Get all the top categories to build the main application menu
-    @menus = Category.where("category_id is null")
-    
+
     #Retrive the current authenticated user
-    if session[:user_id]
-       @user = User.find(session[:user_id]) 
+    begin
+      if session[:user_id]
+        @user = User.find(session[:user_id]) 
+     end
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Unable to find user"
     end
     
-    #Get the current selected menu
-    @menu = @menus.first
+        
+    #Get all the top categories to build the main application menu
+    begin
+      if @user
+        @menus = Category.where("category_id is null").first
+      else
+        @menus = Category.where("category_id is null and authenticated = ?", false).first
+      end
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Unable to get admin menus"
+    end
+      
+    #Get the current selected menu  
     if params[:category_id]
       #if the given category id is a sub category then we keep the current menu which contains the main selected menu
       if Category.find(params[:category_id]).parent
@@ -23,8 +35,8 @@ class ApplicationController < ActionController::Base
       
       session[:menu_id] = @menu.id
     end
-      
   end
+  
   
   private
   

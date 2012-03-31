@@ -1,11 +1,35 @@
 class PostsController < ApplicationController
+  before_filter :authorize, :only => [:new, :edit, :create, :update, :destroy]
+  
   # GET /posts
   # GET /posts.json
   def index
-    cat_id =  params[:category_id] || 1
-    @posts = Post.order("created_at DESC").where("category_id = ? and published = ?", cat_id, true)
-    @latest_posts = Post.order("created_at DESC").limit(2)    
-    @category = Category.find(cat_id)
+    params[:page] = params[:page] || 1
+    cat_id =  params[:category_id] || Category.first
+
+    begin
+      
+      if @user
+        @posts = Post.order("created_at DESC")
+                      .where("category_id = ? and published = ?", cat_id, true)
+                      .paginate(:page => params[:page])
+      else
+        if Category.find(cat_id).authenticated 
+          redirect_to login_url
+        else
+      
+          @posts = Post.order("created_at DESC")
+                    .where("category_id = ? and published = ?", cat_id, true)
+                    .paginate(:page => params[:page])
+        end
+      end
+    
+      @latest_posts = Post.order("created_at DESC").limit(2)    
+      @category = Category.find(cat_id)
+    
+    rescue ActiveRecord::RecordNotFound
+          logger.error "One of hte record you were loking for as not be found in the database"
+    end
     
     respond_to do |format|
       format.html # index.html.erb
@@ -30,6 +54,7 @@ class PostsController < ApplicationController
     @post = Post.new
     @categories = Category.all.map{|category| [category.name, category.id] }
     @category = Category.find(params[:category_id])
+    @post.category = @category
     
     respond_to do |format|
       format.html # new.html.erb
@@ -41,8 +66,10 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
     @categories = Category.all.map{|category| [category.name, category.id] }
-    @category = Category.find(params[:category_id])
     
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+    end
   end
 
   # POST /posts

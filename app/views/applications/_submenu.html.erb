@@ -1,16 +1,18 @@
-<% if @menu.sub_categories %>
-	<ul id="menu">
-	<% @menu.sub_categories.each do |m| %>
-		<li>
-			<a href="<%= category_posts_url(m) %>"><span><%= m.name %></span></a>
-		<% if m.sub_categories %>
-			<ul>
-			<% m.sub_categories.each do |sub| %>
-				<li><a href="<%= category_posts_url(sub) %>"><span><%= sub.name %></span></a></li>
+<% if @menu %>
+	<% if @menu.sub_categories %>
+		<ul id="menu">
+		<% @menu.sub_categories.each do |m| %>
+			<li>
+				<a href="<%= category_posts_url(m) %>"><span><%= m.name %></span></a>
+			<% if m.sub_categories %>
+				<ul>
+				<% m.sub_categories.each do |sub| %>
+					<li><a href="<%= category_posts_url(sub) %>"><span><%= sub.name %></span></a></li>
+				<% end %>
+				</ul>
 			<% end %>
-			</ul>
+			</li>
 		<% end %>
-		</li>
+		</ul>
 	<% end %>
-	</ul>
 <% end %>

@@ -21,10 +21,10 @@
   </div>
   <div class="field">
     <%= f.label :content %><br />
-    <%= f.text_area :content %>
+ 	<%= f.cktext_area :content, :toolbar => 'Full', :width => 450, :height => 400 %>
   </div>
   <div class="field">
-	<%= f.select(:category_id, @categories, :selected => params[:category_id]) %>
+	<%= f.select(:category_id, @categories, :selected => @post.category_id) %>
   </div>
   <div class="field">
 	<%= f.label :published %>

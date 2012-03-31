@@ -52,4 +52,40 @@ $(document).ready(function(){
 
 	}
 
+
+	// Setup the on click event for the photo
+	$(".photo").click(function(){
+				
+		if( !$("#photo-display").length ) {
+			$("#content").append("<div id='photo-display'></div>");
+		}
+		
+		var imgHref = $(this).closest('a').attr("href");
+		
+		$("<img/>") // Make in memory copy of image to avoid css issues
+		    .attr("src", imgHref)
+		    .load(function() {
+				var real_width = this.width;
+				var real_height = this.height;
+				
+				$("#photo-display")
+				.css({
+					position: "absolute",
+					width: real_width,
+					height: real_height,
+					top: ($(window).height() - real_height) / 2,
+					left: 20
+				})
+				.empty()
+				.append("<img alt='' src='" + imgHref + "' />")
+				.click(function(){
+					$("#photo-display").hide();
+				}).show();
+		    });
+
+		return false;
+		
+	});
+	
 });
+

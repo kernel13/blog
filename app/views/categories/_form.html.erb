@@ -14,8 +14,14 @@
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-	Parent: <%= f.select(:category_id, @parents, {:include_blank => true}) %>
+	<%= f.label :category %>
+	<%= f.select(:category_id, @parents, {:include_blank => true}) %>
   </div>
+  <div class="field">
+	<%= f.label :authenticated %>
+	<%= f.check_box :authenticated %>
+  </div>
+	
   <div class="actions">
     <%= f.submit %>
   </div>
