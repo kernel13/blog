@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-<<<<<<< HEAD
   
   before_filter do |controller|
 
@@ -48,6 +47,4 @@ class ApplicationController < ActionController::Base
       end
   end
   
-=======
->>>>>>> af435c4bc5467c40a503b053920c1a7a3dddb6f4
 end

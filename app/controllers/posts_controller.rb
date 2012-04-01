@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     params[:page] = params[:page] || 1
-    cat_id =  params[:category_id] || Category.first
+    cat_id =  params[:category_id] || Category.first.id
 
     begin
       
