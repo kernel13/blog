@@ -16,9 +16,9 @@ class ApplicationController < ActionController::Base
     #Get all the top categories to build the main application menu
     begin
       if @user
-        @menus = Category.where("category_id is null").first
+        @menus = Category.where("category_id is null")
       else
-        @menus = Category.where("category_id is null and authenticated = ?", false).first
+        @menus = Category.where("category_id is null and authenticated = ?", false)
       end
     rescue ActiveRecord::RecordNotFound
       logger.error "Unable to get admin menus"
@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
           @menu = Category.find(params[:category_id])
       end
       
-      session[:menu_id] = @menu.id
+      session[:menu_id] = @menu.id  
     end
   end
   

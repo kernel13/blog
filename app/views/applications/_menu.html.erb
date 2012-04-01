@@ -1,7 +1,7 @@
 <ul>
 <% if @menus %>
 	<% @menus.each do |menu| %>
-		<% if menu.id == @menu.id %>
+		<% if @menu && menu.id == @menu.id %>
 			<li class="selected"><a href="<%= category_posts_url(menu) %>"><%= menu.name %></a></li>
 		<% else %>
 			<li><a href="<%= category_posts_url(menu) %>"><%= menu.name %></a></li>
