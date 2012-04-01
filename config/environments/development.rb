@@ -2,7 +2,11 @@ Blog::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
+<<<<<<< HEAD
   # every request. This slows down response time but is perfect for development
+=======
+  # every request.  This slows down response time but is perfect for development
+>>>>>>> af435c4bc5467c40a503b053920c1a7a3dddb6f4
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
@@ -22,6 +26,7 @@ Blog::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
+<<<<<<< HEAD
   # Raise exception on mass assignment protection for Active Record models
   config.active_record.mass_assignment_sanitizer = :strict
 
@@ -34,4 +39,8 @@ Blog::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+=======
+  # Do not compress assets
+  config.assets.compress = false
+>>>>>>> af435c4bc5467c40a503b053920c1a7a3dddb6f4
 end
