@@ -20,12 +20,5 @@ test:
 
 production:
   adapter: sqlite3
-  database: db/development.sqlite3
-  #adapter:  mysql
-  #encoding: utf8
-  #database: blog
-  #username: blog
-  #password: blog
-  #socket: /var/lib/mysql/mysql.sock  
   pool: 5
   timeout: 5000
