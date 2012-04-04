@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    
+    #Begin
     begin
       
       params[:page] = params[:page] || 1
