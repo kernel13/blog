@@ -28,6 +28,8 @@ set :deploy_to, "/srv/www/lighttpd/#{application}"
    
    task :bundle_gems do
      run "cd #{deploy_to}/current && bundle install vendor/gems"
+     # This is done to solve the error rrno::EACCESS: Permission Denied - [app path]/tmp/cache
+     run "chmod -R 777 #{deploy_to}/current/tmp"
    end
    
    task :start do ; end
