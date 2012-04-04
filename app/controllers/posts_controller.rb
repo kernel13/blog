@@ -4,11 +4,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    #Begin
+    
     begin
       
       params[:page] = params[:page] || 1
-      cat_id =  params[:category_id] || Category.first.id
+      cat_id =  params[:category_id] || 1
       
       if @user
         @posts = Post.order("created_at DESC")
