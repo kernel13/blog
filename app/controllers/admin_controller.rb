@@ -5,4 +5,6 @@ class AdminController < ApplicationController
       @posts = Post.all
       @categories = Category.all
   end
+  
+  
 end
