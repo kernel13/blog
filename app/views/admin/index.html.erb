@@ -31,17 +31,19 @@
 		<th>Delete</th>
 		<th>Edit</th>
 	</tr>
-<% @posts.each do |post| %>
-	<tr>
-		<td width="30px" ><%= post.id %></td>
-		<td width="150px"><%= post.name %></td>
-		<td width="150px"><%= post.title %></td>
-		<td><%= post.category.name %></td>
-		<td><%= post.published %></td>
-		<td><%= link_to 'D', post, confirm: 'Are you sure?', method: :delete %></td>
-		<td><%= link_to 'E', edit_category_post_path(post.category, post) %></td>
-	</tr>
+<% if Category.first %>
+	<% @posts.each do |post| %>
+		<tr>
+			<td width="30px" ><%= post.id %></td>
+			<td width="150px"><%= post.name %></td>
+			<td width="150px"><%= post.title %></td>
+			<td><%= post.category.name %></td>
+			<td><%= post.published %></td>
+			<td><%= link_to 'D', post, confirm: 'Are you sure?', method: :delete %></td>
+			<td><%= link_to 'E', edit_category_post_path(post.category, post) %></td>
+		</tr>
+	<% end %>
 <% end %>
 </table>
-<%= link_to "New Post", new_category_post_path(Category.first) %>
+<%= link_to "New Post", new_category_post_path(Category.first) if Category.first %>
 <br /><br />

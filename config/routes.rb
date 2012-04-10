@@ -13,7 +13,7 @@ Blog::Application.routes.draw do
   #resources :admin
   
   resources :categories do
-    resources :posts
+     resources :posts
   end
   
   resources :posts
