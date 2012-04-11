@@ -8,7 +8,12 @@ class PostsController < ApplicationController
     begin
       
       params[:page] = params[:page] || 1
-      cat_id =  params[:category_id] || 1
+      
+      if params[:category_id] 
+          cat_id =  params[:category_id]
+      else
+          cat_id = Category.where("name = 'Home'")
+      end
       
       if @user
         @posts = Post.order("created_at DESC")
