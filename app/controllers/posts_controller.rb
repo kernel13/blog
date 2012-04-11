@@ -12,7 +12,10 @@ class PostsController < ApplicationController
       if params[:category_id] 
           cat_id =  params[:category_id]
       else
-          cat_id = Category.where("name = 'home'")
+          cat = Category.where("name = 'home'")
+          if cat
+            cat_id = cat.id 
+          end
       end
       
       if @user
