@@ -10,9 +10,11 @@ class PostsController < ApplicationController
       params[:page] = params[:page] || 1
       
       if params[:category_id] 
+          logger.info "params[:category_id] = " + params[:category_id]
           cat_id =  params[:category_id]
       else
           cat_id = Category.select("id").where("name = 'home'")
+          logger.info "cat_id=" + cat_id
       end
       
       if @user
