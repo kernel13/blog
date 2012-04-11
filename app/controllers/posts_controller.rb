@@ -10,17 +10,16 @@ class PostsController < ApplicationController
       params[:page] = params[:page] || 1
       
       if params[:category_id] 
-          logger.info "params[:category_id] = " + params[:category_id]
           cat_id =  params[:category_id]
       else
           cat_id = Category.select("id").where("name = 'home'")
-          logger.info "cat_id=" + cat_id
       end
       
       if @user
         @posts = Post.order("created_at DESC")
                       .where("category_id = ? and published = ?", cat_id, true)
                       .paginate(:page => params[:page])
+  
       else
         if Category.find(cat_id).authenticated 
           redirect_to login_url
