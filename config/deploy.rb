@@ -19,7 +19,7 @@ role :db,  "67.208.112.172" , :primary => true
 set :deploy_to, "/srv/www/lighttpd/#{application}"
 
 
-#after "deploy", "deploy:bundle_gems"
+after "deploy", "deploy:bundle_gems", "update_tmp"
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
@@ -29,7 +29,10 @@ set :deploy_to, "/srv/www/lighttpd/#{application}"
    task :bundle_gems do
      run "cd #{deploy_to}/current && bundle install vendor/gems"
      # This is done to solve the error rrno::EACCESS: Permission Denied - [app path]/tmp/cache
-     run "chmod -R 777 #{deploy_to}/current/tmp"
+   end
+   
+   task :update_tmp 
+    run "chmod -R 777 #{deploy_to}/current/tmp"
    end
    
    task :start do ; end
