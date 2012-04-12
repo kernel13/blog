@@ -12,7 +12,7 @@ class PostsController < ApplicationController
       if params[:category_id] 
           cat_id =  params[:category_id]
       else
-          cat_id = Category.select("id").where("name = 'home'")
+          cat_id = Category.select("id").where("name = 'Home'")
       end
       
       if @user
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
       @category = Category.find(cat_id)
     
     rescue ActiveRecord::RecordNotFound
-          logger.error "One of hte record you were loking for as not be found in the database"
+          logger.error "One of the record you were looking for as not be found in the database"
     end
     
     respond_to do |format|
