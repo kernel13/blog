@@ -31,7 +31,7 @@ after "deploy", "deploy:bundle_gems", "update_tmp"
      # This is done to solve the error rrno::EACCESS: Permission Denied - [app path]/tmp/cache
    end
    
-   task :update_tmp 
+   task :update_tmp do
     run "chmod -R 777 #{deploy_to}/current/tmp"
    end
    
