@@ -14,7 +14,32 @@
 <% end %>
 
 <div id="posts">
- 
+
+ 	<% @posts.each do |post| %>
+	  <ul> 
+	    <li class='title'><h3><%= post.title %></h3></li>
+	    <li class='content'><%= strip_tags(post.content)[0..200] %><% if post.content.size > 200 %>...<% end %></li>
+		<li><%= link_to "Lire la suite", category_post_path(post.category, post) %></li>
+	<!--
+	    <li><%= link_to 'Show', post %></li>
+	-->
+		<% if @user %>
+	    <li>
+			<span>
+			<%= link_to edit_category_post_path(post.category, post) do %>
+				<%= image_tag "edit.jpg", :size => "24x24" %>Edit
+			<% end %>
+			</span>
+			<span>
+			<%= link_to post, confirm: 'Are you sure?', method: :delete do %>
+				<%= image_tag "remove.png", :size => "24x24" %>Delete
+			<% end %>
+			</span>
+		</li>
+		<% end %>
+	 </ul>
+	<% end %>
+
 </div>
 <div id="post_paginate" class="paginate">
 	<%= will_paginate @posts if @posts  %>
